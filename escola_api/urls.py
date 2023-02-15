@@ -14,5 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('aluno/<int:pk>/matriculas/',ListaMatriculasAluno.as_view()),
-    path('curso/<int:pk>/matriculas/',ListaAlunoMatriculado.as_view())
+    path('curso/<int:pk>/matriculas/',ListaAlunoMatriculado.as_view()),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+

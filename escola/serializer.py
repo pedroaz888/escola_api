@@ -2,6 +2,7 @@ from rest_framework import serializers
 from escola.models import Aluno, Curso, Matricula
 
 #É UM FILTRO DOS DADOS QUE A GENTE QUER DISPONIBILIZAR NA NOSSA API
+# CONVERTE OS DADOS DA NOSSA API NO FORMATO JSON
 
 class AlunoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,9 +15,13 @@ class CursoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MatriculaSerializer(serializers.ModelSerializer):
+    curso = serializers.ReadOnlyField(source='curso.descricao')
+    aluno_nome = serializers.ReadOnlyField(source='aluno.nome')
     class Meta:
         model = Matricula
         fields = '__all__'
+
+
 
 class ListaMatriculaAlunoSerializer(serializers.ModelSerializer):
     curso = serializers.ReadOnlyField(source='curso.descricao')

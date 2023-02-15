@@ -1,8 +1,9 @@
 
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics,filters
 from escola.models import Aluno, Curso, Matricula
 from escola.serializer import AlunoSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculaAlunoSerializer, ListaAlunosMatriculadosSerializer
 from rest_framework.authentication import BasicAuthentication
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -10,6 +11,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos e alunos"""
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['id', 'nome','data_nascimento']
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -17,6 +20,8 @@ class CursosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['nivel']
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -24,6 +29,8 @@ class MatriculasViewSet(viewsets.ModelViewSet):
     """Listando todas as matrículas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['periodo']
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 

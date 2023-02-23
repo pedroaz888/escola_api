@@ -16,4 +16,5 @@ senha: 1234</br>
 
 
 
-https://web-production-cb688.up.railway.app/
+
+https://escolaapi-production.up.railway.app/

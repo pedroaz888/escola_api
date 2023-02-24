@@ -12,7 +12,7 @@ senha: 1234</br>
 /aluno/<int:pk>/matriculas/
 
 - a listagem dos alunos matriculados inserindo a path:</br>
-/curso/<int:pk>/matriculas
+/curso/<int:pk>/matriculas/
 
 
 
